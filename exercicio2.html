@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .calculadora {
+            width: 500px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            background-color: rgb(139, 75, 223);
+            border-radius: 25px;
+            border-color: 5px black;
+            box-shadow: 2px 2px 2px rgb(213, 35, 248);
+        }
+    </style>
+
+    <script src="jquery-4.0.0.min.js"></script>
+</head>
+
+<body>
+
+    <div class="calculadora">
+        <h1><em>Calculadora</em></h1>
+        <p><em>Digite o número para conversão</em></p>
+
+        <input type="text" id="decimal" placeholder="Decimal">
+        <input type="text" id="binario" placeholder="Binário">
+        <input type="text" id="octal" placeholder="Octal">
+        <input type="text" id="hexadecimal" placeholder="Hexadecimal">
+    </div>
+
+</body>
+
+<script>
+
+    function converter(numero, base) {
+
+        let decimal = parseInt(numero, base);
+
+
+        if (isNaN(decimal)) { 
+            return; 
+        }
+
+        $("#decimal").val(decimal);
+        $("#binario").val(decimal.toString(2));
+        $("#octal").val(decimal.toString(8));
+        $("#hexadecimal").val(decimal.toString(16));
+    }
+
+    $("#binario").on("input", function () {
+        converter($(this).val(), 2);
+    });
+
+
+    $("#decimal").on("input", function () {
+        converter($(this).val(), 10);
+    });
+
+
+    $("#octal").on("input", function () {
+        converter($(this).val(), 8);
+    });
+
+
+    $("#hexadecimal").on("input", function () {
+        converter($(this).val(), 16);
+    });
+
+</script>
+
+
+
+</html>
