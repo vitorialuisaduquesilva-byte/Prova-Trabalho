@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .listaEstilizada{
+            width: 500px;
+            height: 500px;
+            background-color: rgb(191, 136, 255);
+            border-radius: 25px;
+        }
+
+        
+    </style>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+
+</head>
+
+<body>
+    <div class="listaEstilizada">
+
+        <h1>Minhas tarefas</h1>
+        <p>Organize suas tarefas</p>
+
+        <button id="nova">
+            Nova tarefa
+        </button>
+
+
+        <div id="tarefaDiv">
+            <h2>Nova tarefa</h2>
+            <input type="text" id="tarefaId" placeholder="Digite sua tarefa">
+            <button id="adicionar">
+                Adicionar
+            </button>
+            <button id="cancelar">
+                Cancelar
+            </button </div>
+
+            <div id="lista">
+            </div>
+
+        </div>
+
+</body>
+
+<script>
+    $("#nova").click(function () {
+        $("#tarefaDiv").show();
+    });
+
+    $("#cancelar").click(function () {
+        $("#tarefaDiv").hide();
+    });
+
+    $("#adicionar").click(function () {
+        var texto = $("#tarefaId").val();
+
+        if (texto == "") {
+            alert("Digite uma tarefa!");
+            return;
+        }
+
+        $("#lista").append(
+            "<div class='tarefa'>" +
+            texto +
+            " <button class='concluir'>Concluir</button>" +
+            " <button class='excluir'>Excluir</button>" +
+            "</div>"
+        );
+
+        $("#tarefaId").val("");
+        $("#tarefaDiv").hide();
+    });
+
+    $(document).on("click", ".concluir", function () {
+        $(this).parent().addClass("concluida");
+    });
+
+    $(document).on("click", ".excluir", function () {
+        $(this).parent().remove();
+    });
+</script>
+
+</html>
