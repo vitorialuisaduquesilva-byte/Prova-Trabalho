@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livro Digital</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .centralEstilizada {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            width: 500px;
+            height: 500px;
+            background-color: rgb(128, 241, 213);
+            border-radius: 25px;
+            box-shadow: 5px 5px 3px rgb(58, 148, 221);
+            font-size: 200px;
+            font-style: oblique;
+            text-transform: uppercase;
+        }
+    </style>
+
+    <script src="jquery-4.0.0.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="centralEstilizada" id="letras"></div>
+
+    <img src="" id="a">
+    <img src="" id="e">
+    <img src="" id="i">
+    <img src="" id="o">
+    <img src="" id="u">
+
+</body>
+<script>
+    const letras = document.getElementById('letras');
+    let letrasTexto;
+
+    $(document).on("keydown", function (evento) {
+        letras.textContent = evento.key;
+        letrasTexto = letras.textContent;
+        var sintetizador = new SpeechSynthesisUtterance(letrasTexto);
+        sintetizador.lang = "pt-BR"; // idioma português
+        sintetizador.rate = 0.9;     // velocidade da fala (1 = normal)
+        sintetizador.pitch = 1;      // tom da voz
+
+        speechSynthesis.cancel();    // interrompe fala anterior, se houver
+        speechSynthesis.speak(sintetizador);
+
+        if (letrasTexto == 'a') {
+            $('#a').show();
+        }
+        if (letrasTexto == 'e') {
+            $('#e').show();
+        }
+        if (letrasTexto == 'i') {
+            $('#i').show();
+        }
+        if (letrasTexto == 'o') {
+            $('#o').show();
+        }
+        if (letrasTexto == 'u') {
+            $('#u').show();
+        }
+    });
+
+</script>
+
+
+</html>
